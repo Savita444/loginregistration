@@ -9,21 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect DB
 connectDB();
-
-// Routes
-app.get('/test-db', async (req, res) => {
-  try {
-    // Simple query to check if database connection is established
-    
-    const result = await mongoose.connection.db.admin().ping();
-    res.json({ message: 'Database connected successfully!', status: result });
-  } catch (error) {
-    res.status(500).json({ message: 'Database connection failed', error: error.message });
-  }
-});
-
 
 app.use('/api', require('./routes/authRoutes'));
 // app.use('/api/hoteladmin', require('./routes/hoteladmin/index'));
